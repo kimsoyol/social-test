@@ -1,23 +1,11 @@
-// app/posts/PostList.tsx
 "use client";
 
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import Post from "./Post";
-
-const fetchPosts = async ({ pageParam = 1 }) => {
-  console.log(pageParam);
-  
-  const response = await fetch(
-    `https://dummyjson.com/posts?limit=10&skip=${(pageParam - 1) * 10}`
-  );
-  return await response.json();
-};
+import { fetchPosts } from "../api/postsApi";
 
 export default function PostList() {
-  // const [page, setPage] = useState(1);
-  // const [posts, setPosts] = useState([]);
-
   const {
     data,
     isError,
@@ -34,7 +22,6 @@ export default function PostList() {
       return nextPage <= Math.ceil(lastPage.total / 10) ? nextPage : undefined;
     },
   });
-
 
   const handleScroll = () => {
     if (
@@ -56,7 +43,7 @@ export default function PostList() {
 
   return (
     <div className="max-w-xl mx-auto">
-     {data?.pages.map((page) =>
+      {data?.pages.map((page) =>
         page.posts.map((post: any) => <Post key={post.id} post={post} />)
       )}
       {isFetchingNextPage && <div>Loading more posts...</div>}

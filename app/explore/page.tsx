@@ -3,7 +3,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { getPosts } from "./actions";
 import Posts from "./PostsList";
 import PostList from "./PostsList";
 
