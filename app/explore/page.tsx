@@ -5,6 +5,8 @@ import {
 } from "@tanstack/react-query";
 import Posts from "./PostsList";
 import PostList from "./PostsList";
+import { signOut } from "@/auth";
+import { Button } from "@/components/ui/button";
 
 // import { useState, useEffect, useCallback } from "react";
 
@@ -29,7 +31,10 @@ const page = async () => {
   // });
 
   return (
-    <PostList />
+    <div>
+      
+      <PostList />
+    </div>
   );
 };
 export default page;

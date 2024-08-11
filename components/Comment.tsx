@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 interface CmtProps {
   initComments: any;
@@ -33,9 +34,9 @@ const Comment = ({ initComments }: CmtProps) => {
           <p>{cmt.body}</p>
         </div>
       ))}
-      <form onSubmit={handleSubmit} className="pt-2">
+      <form onSubmit={handleSubmit} className="mt-2">
         <Textarea name="cmt" placeholder="Type your comment here." required/>
-        <button type="submit" className="mt-2 bg-blue-500 text-white p-2 rounded">Post</button>
+        <Button type="submit" className="mt-2">Post</Button>
       </form>
     </div>
   );
