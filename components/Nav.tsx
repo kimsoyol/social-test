@@ -13,7 +13,7 @@ const Nav = async () => {
         <form
           action={async () => {
             "use server";
-            await signOut();
+            await signOut({ redirectTo: "/" });
           }}
         >
           <Button>Sign Out</Button>

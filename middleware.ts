@@ -1,25 +1,23 @@
-//export { auth as middleware } from "@/auth"
 
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
+import { protectedRoutes, publicRoutes } from '@/routes'
+import next from 'next'
  
-// Specify protected and public routes
-const protectedRoutes = ['/explore']
+
 const adminRoutes = ['/dashboard']
-const publicRoutes = ['/']
+
  
 export default async function middleware(req: NextRequest) {
   // Check if the current route is protected or public
   const path = req.nextUrl.pathname
-  const isProtectedRoute = protectedRoutes.includes(path)
+  const isProtectedRoute = req.nextUrl.pathname.startsWith(protectedRoutes)
   const isPublicRoute = publicRoutes.includes(path)
   const isAdminRoute = adminRoutes.includes(path)
  
   //const cookie = cookies().get('session')?.value
   const session = await auth()
   const isAdmin = session?.user?.role === 'admin';
-
-
 
  // Redirect to / if the user is not authenticated
   if (isProtectedRoute && !session?.user) {

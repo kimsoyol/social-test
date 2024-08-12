@@ -17,6 +17,8 @@ declare module "@auth/core/adapters" {
     role: string;
   }
 }
+
+
 async function getUser(email: string): Promise<any> {
   // Dummy users data
   const users = [
