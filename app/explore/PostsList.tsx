@@ -38,8 +38,14 @@ export default function PostList() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isFetchingNextPage, hasNextPage]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading posts</div>;
+  if (isLoading)
+    return <div className="mx-auto mt-80 max-w-lg text-center">Loading...</div>;
+  if (isError)
+    return (
+      <div className="mx-auto mt-80 max-w-lg text-center">
+        Error loading posts
+      </div>
+    );
 
   return (
     <div className="max-w-xl mx-auto">

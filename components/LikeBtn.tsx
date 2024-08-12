@@ -1,20 +1,28 @@
+import { useCurrentUser } from "@/hooks/use-currrent-user";
 import { useState } from "react";
 
 interface LikeButtonProps {
   initialLiked: boolean;
   initialLikeCount: number;
   onToggle?: (liked: boolean) => void;
+  contentOwnerId: string;
 }
 
 const LikeBtn = ({
   initialLiked,
   initialLikeCount,
+  contentOwnerId,
   onToggle,
 }: LikeButtonProps) => {
   const [liked, setLiked] = useState(initialLiked);
   const [likeCount, setLikeCount] = useState(initialLikeCount);
+  const user = useCurrentUser();
 
   const toggleLike = () => {
+    if (contentOwnerId === user?.id) {
+      // Prevent like action if the content owner is the same as the user
+      return;
+    }
     const newLikedState = !liked;
     setLiked(newLikedState);
     setLikeCount(likeCount + (newLikedState ? 1 : -1));

@@ -18,7 +18,6 @@ declare module "@auth/core/adapters" {
   }
 }
 
-
 async function getUser(email: string): Promise<any> {
   // Dummy users data
   const users = [
@@ -38,32 +37,6 @@ async function getUser(email: string): Promise<any> {
 
   try {
     const user = users.find((u) => u.email === email);
-    return user;
-  } catch (error) {
-    console.error("Failed to fetch user:", error);
-    throw new Error("Failed to fetch user.");
-  }
-}
-
-async function getUserById(id: string): Promise<any> {
-  // Dummy users data
-  const users = [
-    {
-      id: "1",
-      email: "admin@email.com",
-      password: await bcrypt.hash("1234", 10),
-      role: "admin",
-    },
-    {
-      id: "2",
-      email: "user@email.com",
-      password: await bcrypt.hash("1234", 10),
-      role: "user",
-    },
-  ];
-
-  try {
-    const user = users.find((u) => u.id === id);
     return user;
   } catch (error) {
     console.error("Failed to fetch user:", error);
@@ -98,15 +71,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    // async session({ session, user }) {
-    //   if (session?.user) {
-    //     session.user.id = user.id;
-    //     session.user.role = user.role;
-    //   }
-
-    //   return session;
-    // },
-
     jwt({ token, user }) {
       if (user) token.role = user.role;
       return token;
@@ -115,28 +79,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.user.role = token.role as "admin" | "user";
       return session;
     },
-
-    // async session({ session, token }) {
-    //   if (token.sub && session.user) {
-    //     session.userId = token.sub;
-    //   }
-
-    //   if (token.role && session.user) {
-    //     session.user.role = token.role as "admin" | "user";
-    //   }
-
-    //   return session;
-    // },
-
-    // async jwt({ token }) {
-    //   if (!token.sub) return token;
-    //   const existingUser = await getUserById(token.sub);
-    //   if (!existingUser) return token;
-    //   token.role = existingUser.role;
-    //   console.log(existingUser);
-
-    //   return token;
-    // },
   },
   session: { strategy: "jwt" },
 });

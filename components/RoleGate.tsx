@@ -1,4 +1,4 @@
-import { useCurrentRole } from "@/hooks/use-currrent-role";
+import { useCurrentRole } from "@/hooks/use-currrent-user";
 import { UserRole } from "@/lib/definitions";
 import { currentRole } from "@/lib/utils";
 import { redirect } from "next/navigation";
