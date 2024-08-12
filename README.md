@@ -53,12 +53,12 @@ To get started with this project, follow the steps below:
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/your-repository.git
+  git clone https://github.com/kimsoyol/social-test.git
   ```
 
 2. Navigate to the project directory:
   ```bash
-  cd your-repository
+  cd social-test/
   ```
 
 3. install the dependencies:
