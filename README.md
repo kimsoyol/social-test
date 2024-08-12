@@ -137,7 +137,7 @@ Like Count: Displays the current number of likes.
    
 Route Checks: The middleware.ts file is responsible for handling route protection and access control based on user authentication and roles. It checks if the user is authenticated and redirects them to appropriate routes based on their authentication status and role.
 
-Protected Routes: Users are redirected to the home page (/) if they try to access protected routes without being authenticated.
+Protected Routes: Users are redirected to the login page (/) if they try to access protected routes without being authenticated.
 
 Admin Routes: Users who are not admins are redirected from admin-specific routes (e.g., /dashboard) to the /explore page.
 
