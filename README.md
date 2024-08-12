@@ -134,13 +134,19 @@ Like Count: Displays the current number of likes.
 ### Role-Based Access Control
 
  - Middleware for Route Protection:
+   
 Route Checks: The middleware.ts file is responsible for handling route protection and access control based on user authentication and roles. It checks if the user is authenticated and redirects them to appropriate routes based on their authentication status and role.
+
 Protected Routes: Users are redirected to the home page (/) if they try to access protected routes without being authenticated.
+
 Admin Routes: Users who are not admins are redirected from admin-specific routes (e.g., /dashboard) to the /explore page.
+
 Public Routes: Authenticated users are redirected to /explore if they attempt to access public routes that should not be available to logged-in users.
 
  - Role-Based Component Guard:
+   
 RoleGate Component: This component checks the user's role before rendering its children. If the user's role does not match the required role (e.g., "admin"), they are redirected to the /explore page.
+
 Usage in Layout: The RoleGate component is used in the layout for admin routes (/dashboard) to ensure that only users with the "admin" role can access these routes.
 
 ## Dependencies
