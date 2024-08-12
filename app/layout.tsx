@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/provider";
 import { SessionProvider } from "next-auth/react";
+import type { Session } from "@auth/core/types";
+import { NextAuthProvider } from "@/app/nextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,18 +14,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  session,
   children,
 }: Readonly<{
   children: React.ReactNode;
-  session: any
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <SessionProvider session={session}>
+      <body className={`${inter.className} max-w-[1780px] mx-auto`}>
+        <NextAuthProvider>
           <Providers>{children}</Providers>
-        </SessionProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

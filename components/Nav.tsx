@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 const Nav = async () => {
   const session = await auth();
   return (
-    <div className="flex items-center justify-between max-w-7xl mx-auto">
+    <div className="flex items-center justify-between px-8 mx-auto shadow-lg">
       <div>
         <p>{session?.user?.email}</p>
         <p>user role - {session?.user?.role}</p>
