@@ -3,6 +3,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LikeBtn from "@/components/LikeBtn";
+import { useSession } from "next-auth/react";
+import { useCurrentUser } from "@/hooks/use-currrent-user";
+
 
 interface CmtProps {
   initComments: any;
@@ -10,6 +13,7 @@ interface CmtProps {
 
 const Comment = ({ initComments }: CmtProps) => {
   const [comments, setComments] = useState(initComments);
+  const user = useCurrentUser()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +25,7 @@ const Comment = ({ initComments }: CmtProps) => {
 
     const newCmt = {
       body: newComment,
-      user: { fullName: "Current User" },
+      user: { fullName: user?.email },
     };
 
     setComments([...comments, newCmt]);

@@ -3,7 +3,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import Post from "./Post";
-import { fetchPosts } from "../api/postsApi";
+import { fetchPosts } from "@/app/api/postsApi";
 
 export default function PostList() {
   const {

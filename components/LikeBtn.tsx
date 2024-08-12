@@ -1,5 +1,4 @@
 import { useCurrentUser } from "@/hooks/use-currrent-user";
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 interface LikeButtonProps {
@@ -17,11 +16,11 @@ const LikeBtn = ({
 }: LikeButtonProps) => {
   const [liked, setLiked] = useState(initialLiked);
   const [likeCount, setLikeCount] = useState(initialLikeCount);
-  const session = useSession();
-  const userId = session.data?.user?.id
+  const user = useCurrentUser()
+
 
   const toggleLike = () => {
-    if (contentOwnerId === userId) {
+    if (contentOwnerId === user?.id) {
       // Prevent like action if the content owner is the same as the user
       return;
     }
