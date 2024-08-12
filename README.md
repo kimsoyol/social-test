@@ -26,25 +26,25 @@ The project follows the Next.js App directory structure with the following key f
 ```
 ├── app/
 │ ├── api/
-│ ├── ├── postsApi.tsx          // API functions for fetching posts and comments
-│ ├── dashboard/                // Admin route only
+│ ├── ├── postsApi.tsx     // API functions for fetching posts and comments
+│ ├── dashboard/           // Admin route only
 │ ├── ├── page.tsx
 │ ├── explore/
-│ ├── ├── page.tsx              // Main page for NewsFeed
-│ ├── ├── layout.tsx            // Layout component for NewsFeed
-│ ├── page.tsx                  // Login page
-│ ├── layout.tsx                // Main layout component
-├── components/                 // Reusable components
-├── hooks/                      // Custom hooks for state and effects
-├── lib/                        // Utility functions & types
-├── public/                     // Public assets
-├── auth.ts                     // Authentication-related functions
-├── auth.config.ts              // Configuration for authentication (e.g., roles, permissions)
-├── middleware.ts               // Middleware for handling authentication and role-based access control
-├── tailwind.config.js          // Tailwind CSS configuration
-├── tsconfig.json               // TypeScript configuration
-├── next.config.js              // Next.js configuration
-└── package.json                // Project dependencies and scripts
+│ ├── ├── page.tsx         // Main page for NewsFeed
+│ ├── ├── layout.tsx       // Layout component for NewsFeed
+│ ├── page.tsx             // Login page
+│ ├── layout.tsx           // Main layout component
+├── components/            // Reusable components
+├── hooks/                 // Custom hooks for state and effects
+├── lib/                   // Utility functions & types
+├── public/                // Public assets
+├── auth.ts                // Authentication-related functions
+├── auth.config.ts         // Configuration for authentication (e.g., roles, permissions)
+├── middleware.ts          // Middleware for handling authentication and role-based access control
+├── tailwind.config.js     // Tailwind CSS configuration
+├── tsconfig.json          // TypeScript configuration
+├── next.config.js         // Next.js configuration
+└── package.json           // Project dependencies and scripts
 ```
 
 
@@ -56,18 +56,22 @@ To get started with this project, follow the steps below:
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-repository.git
+   ```
 
 2. Navigate to the project directory:
   ```bash
   cd your-repository
+  ```
 
 3. install the dependencies:
   ```bash
   npm install
+  ```
 
 4. Run the development server:
   ```bash
   npm run dev
+  ```
 
 ## Configuration
 
