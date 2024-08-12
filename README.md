@@ -1,5 +1,3 @@
-# Senior Design Engineer Task - React.js and Next.js Application
-
 ## Overview
 
 This project is a demonstration of a NewsFeed design similar to Facebook or X (formerly Twitter), and an RBAC (Role-Based Access Control) authentication system for an admin panel. The project is built using React.js, Next.js, TypeScript, and React.js-related libraries.
@@ -54,9 +52,9 @@ The project follows the Next.js App directory structure with the following key f
 To get started with this project, follow the steps below:
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repository.git
-   ```
+  ```bash
+  git clone https://github.com/your-repository.git
+  ```
 
 2. Navigate to the project directory:
   ```bash
@@ -83,19 +81,90 @@ Ensure that your environment is set up with the following:
 
 No additional configuration is needed. Tailwind CSS is pre-configured, and JSON Placeholder is used as the mock API.
 
+## Features
+
+### NewsFeed Design
+ - Infinite Scroll: Dynamically load new posts as the user scrolls down.
+ - Like and Unlike Counter: A counter to like/unlike posts with visual feedback.
+ - Post Detail and Comments: A detailed view of the post with a commenting system.
+ - Comment Functionality: Users can add and view comments in real-time.
+
+### RBAC Authentication
+ - Role Management: Users are assigned roles (e.g., admin, user) and redirected based on permissions.
+ - Permissions: Admins have full permissions; users have read-only access.
+ - Protected Routes: Use of HOCs and custom hooks to manage route protection.
+
+## Implementation Details
+
+### Infinite Scroll
+ - Infinite Query Setup: The `useInfiniteQuery` hook is used to manage fetching paginated data. It retrieves posts in chunks and determines the next page to load through the getNextPageParam function. This function calculates the next page based on the total number of pages and the current pages fetched.
+
+ - Scroll Event Listener: The handleScroll function checks if the user has scrolled to the bottom of the page. If so, and if there are more pages to fetch (hasNextPage) and none are currently being fetched (!isFetchingNextPage), it triggers fetchNextPage() to load more posts. This function is added as an event listener to the scroll event and removed when the component unmounts.
+
+ - Rendering the Data: The component displays a loading message while fetching data and an error message if there is an issue. It iterates over the fetched pages and renders posts using the Post component. An additional loading indicator is shown when more posts are being fetched.
+
+### Like and Unlike Counter
+
+ - State Management:
+liked: Manages whether the post is currently liked by the user.
+likeCount: Keeps track of the total number of likes.
+
+ - User Restriction:
+The toggleLike function prevents users from liking their own posts by comparing the contentOwnerId with the current user's ID.
+Like Toggle Logic:
+
+Clicking the button toggles the liked state and updates the likeCount. It also calls the onToggle callback if provided.
+
+ - UI Elements:
+Button: Triggers the toggleLike function. It changes color based on whether the post is liked.
+SVG Icon: Represents the like button with conditional coloring (red if liked, gray otherwise).
+Like Count: Displays the current number of likes.
+
+
+### Post Detail and Comments
+
+ - Data Fetching: The useQuery hook is used to fetch the post details and its comments based on the post ID. It handles loading and error states for both the post data and the comments.
+
+ - Post Rendering: The component displays the post's title, body, and a "Like" button. It ensures that the user can view the post content and interact with it by liking it.
+
+ - Comments Management: The Comment component displays existing comments and allows users to add new comments. It manages the comments state locally and prevents users from commenting on their own posts.
+
+ - Comment Submission: A form is provided for submitting new comments, which updates the comments list dynamically. The form includes a text area for input and a submit button.
+
+### Role-Based Access Control
+
+ - Middleware for Route Protection:
+Route Checks: The middleware.ts file is responsible for handling route protection and access control based on user authentication and roles. It checks if the user is authenticated and redirects them to appropriate routes based on their authentication status and role.
+Protected Routes: Users are redirected to the home page (/) if they try to access protected routes without being authenticated.
+Admin Routes: Users who are not admins are redirected from admin-specific routes (e.g., /dashboard) to the /explore page.
+Public Routes: Authenticated users are redirected to /explore if they attempt to access public routes that should not be available to logged-in users.
+
+ - Role-Based Component Guard:
+RoleGate Component: This component checks the user's role before rendering its children. If the user's role does not match the required role (e.g., "admin"), they are redirected to the /explore page.
+Usage in Layout: The RoleGate component is used in the layout for admin routes (/dashboard) to ensure that only users with the "admin" role can access these routes.
+
 ## Dependencies
 
-React.js
-Next.js
-TypeScript
-React Query
-Tailwind CSS
-Shadcn 
-Zod
-NextAuth 
-bcrypt
+React.js,
+Next.js,
+TypeScript,
+React Query,
+Tailwind CSS,
+Shadcn,
+Zod,
+NextAuth, 
+bcrypt, 
 
 
 ## Usage
-NewsFeed: Accessible at the root path (/). Scroll down to load more posts, like/unlike posts, and click on comments to view details.
-Admin Panel: Accessible at /admin. Login with a mock account to access the panel, and permissions will be enforced based on user roles.
+1. NewsFeed: Accessible at the path (/explore). Scroll down to load more posts,  like/unlike posts, and click on comments to view details.
+2. Admin Only Route: Accessible at /dashboard. 
+3. Login with a mock account to access the panel at, and permissions will be enforced based on user roles.
+
+Admin user
+username - admin@email.com
+password - 1234
+
+Normal user
+username - user@email.com
+password - 1234

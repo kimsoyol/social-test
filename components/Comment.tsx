@@ -3,7 +3,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import LikeBtn from "@/components/LikeBtn";
-import { useSession } from "next-auth/react";
 import { useCurrentUser } from "@/hooks/use-currrent-user";
 
 
